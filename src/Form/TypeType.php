@@ -13,11 +13,7 @@ class TypeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, [
-                'attr' => [
-                    'maxlength' => 25,
-                ]
-            ])
+            ->add('name')
         ;
     }
 
