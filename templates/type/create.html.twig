@@ -17,7 +17,6 @@
             <thead>
                 <th>#</th>
                 <th>Nom</th>
-                <th>Options</th>
             </thead>
 
             <tbody>
@@ -26,18 +25,25 @@
 
                     <tr>
                         <td>{{ type.id }}</td>
-                        <td>{{ type.name }}</td>
-                        <td width="20%">
-                            <button class="btn btn-sm btn-warning">Éditer</button>
+                        <td>
+                            <a id="link-type-{{ type.id }}" href="#" data-type-id="{{ type.id }}">{{ type.name }}</a> (cliquer pour éditer)
 
 
-                            <form method="post" action="{{ path('type_delete', { id: type.id }) }}">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token('deleteType' ~ type.id) }}">
-                                <button class="btn btn-sm btn-danger">Supprimer</button>
-                            </form>
+                            <div id="type-{{ type.id }}-edit" style="display:none;" class="btn-group">
 
+                                <form method="post" action="{{ path('type_edit', {id : type.id }) }}">
+                                    <input type="text" name="name" value="{{ type.name }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('editType' ~ type.id) }}">
+                                    <input type="hidden" name="_method" value="PATCH">
+                                    <button class="btn btn-sm btn-warning">Éditer</button>
+                                </form>
 
+                                <form method="post" action="{{ path('type_delete', { id: type.id }) }}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('deleteType' ~ type.id) }}">
+                                    <button class="btn btn-sm btn-danger" style="margin-top:1px; margin-left:5px;">Supprimer</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
 
@@ -47,4 +53,28 @@
         </table>
 
 
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+
+        $(function() {
+
+            $('[id^=link-type-]').on('click', function() {
+
+                let typeId = $(this).data('typeId');
+
+                $('[id ^=type-][id $=-edit]').hide();
+                $('#type-'+typeId+'-edit').toggle();
+
+                $(this).on('click', function() {
+                    $('#type-'+typeId+'-edit').toggle();
+                })
+
+            })
+
+        })
+
+    </script>
 {% endblock %}

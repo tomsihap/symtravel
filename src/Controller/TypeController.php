@@ -7,6 +7,7 @@ use App\Form\TypeType;
 use App\Repository\TypeRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -62,8 +63,29 @@ class TypeController extends AbstractController
     }
 
     /**
+     * @Route("/{id}/edit", name="type_edit", methods={"PATCH"})
+     */
+    public function edit(Request $request, Type $type)
+    {
+        $token = $request->request->get('_token');
+
+        if ( $this->isCsrfTokenValid('editType' . $type->getId(), $token) )
+        {
+
+            $type->setName( $request->request->get('name') );
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($type);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('type_create');
+        }
+    }
+
+    /**
      * @Route("/{id}/delete", name="type_delete", methods={"DELETE"})
      * @param Type $type
+     * @return RedirectResponse
      */
     public function delete(Request $request, Type $type)
     {
@@ -77,7 +99,6 @@ class TypeController extends AbstractController
             $entityManager->flush();
 
             return $this->redirectToRoute('type_create');
-
         }
     }
 }
