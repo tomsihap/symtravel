@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76d6a7dc-0fa3-444e-a6cd-fa87fde79ea0" name="Default Changelist" comment="Form validations">
+      <change afterPath="$PROJECT_DIR$/src/Controller/DestinationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/DestinationType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/destination/create.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/destination/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TypeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TypeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/partials/_navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_navbar.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/type/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/type/create.html.twig" afterDir="false" />
     </list>
@@ -146,8 +150,11 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1Pzzv0xkROuz7PeyhJs4FM85c6Y" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -157,7 +164,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -190,7 +197,7 @@
       <workItem from="1566806418882" duration="4348000" />
       <workItem from="1566812794439" duration="9949000" />
       <workItem from="1566891837922" duration="59000" />
-      <workItem from="1566891945888" duration="10443000" />
+      <workItem from="1566891945888" duration="16279000" />
     </task>
     <task id="LOCAL-00001" summary="Creating type form, view and controller">
       <created>1566891710417</created>
@@ -247,6 +254,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Creating type form, view and controller" />
     <MESSAGE value="Update gitignore : remove .idea folder" />
     <MESSAGE value="Form validations" />

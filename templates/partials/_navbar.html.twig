@@ -14,10 +14,10 @@
                     Nos destinations
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Liste des destinations</a>
+                    <a class="dropdown-item" href="{{ path('destination_index') }}">Liste des destinations</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ path('type_create') }}">Ajouter un type</a>
-                    <a class="dropdown-item" href="#">Ajouter une destination</a>
+                    <a class="dropdown-item" href="{{ path('destination_create') }}">Ajouter une destination</a>
                 </div>
             </li>
         </ul>
