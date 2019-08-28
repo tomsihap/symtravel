@@ -22,6 +22,7 @@ class DestinationType extends AbstractType
             ->add('photo', FileType::class, [
                 'label'     => 'Photo de la destination',
                 'mapped'    => false,
+                'required'  => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '8M',

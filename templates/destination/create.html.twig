@@ -12,18 +12,25 @@
         </div>
 
         <div class="col-6">
+
+            {% if destination.photo %}
+                <img src="{{ asset('uploads/destinations/' ~ destination.photo) }}" width="500">
+            {% endif %}
+
             {{ form_row(form.photo) }}
             {{ form_row(form.type) }}
         </div>
     </div>
 
 
+    {% if destination.name %}
+        <button class="btn btn-warning pull-right">Éditer la destination</button>
+    {% else %}
+        <button class="btn btn-success pull-right">Créer la destination</button>
+    {% endif %}
 
-        {% if isEditMode %}
-            <button class="btn btn-warning pull-right">Éditer la destination</button>
-        {% else %}
-            <button class="btn btn-success pull-right">Créer la destination</button>
-        {% endif %}
+
+
     {{ form_end(form) }}
 
 {% endblock %}

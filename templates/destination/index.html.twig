@@ -16,8 +16,12 @@
                         </div>
 
                         <div class="card-footer">
-                            <a class="btn btn-sm btn-warning" href="{{ path('destination_edit', {id: destination.id}) }}">Éditer</a>
-                            <button class="btn btn-sm btn-danger">Supprimer</button>
+                            {% if app.user %}
+                                <a class="btn btn-sm btn-warning" href="{{ path('destination_edit', {id: destination.id}) }}">Éditer</a>
+                                <button class="btn btn-sm btn-danger">Supprimer</button>
+
+                                <a class="btn btn-primary" href="{{ path("review_visited", { destination: destination.id, user: app.user.id }) }}">J'ai visité</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

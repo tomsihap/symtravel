@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <ul>
+
+        {% for review in user.reviews %}
+
+            <li>{{ review.destination.name }}</li>
+
+        {% endfor %}
+
+    </ul>
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

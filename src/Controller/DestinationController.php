@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Destination;
 use App\Form\DestinationType;
 use App\Repository\DestinationRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,16 +46,14 @@ class DestinationController extends AbstractController
     /**
      * @Route("/new", name="destination_create")
      * @Route("/{id}/edit", name="destination_edit")
+     * @IsGranted("ROLE_USER")
      */
     public function create(Request $request, Destination $destination = null)
     {
 
-        $isEditMode = true;
-
         if ($destination === null)
         {
             $destination = new Destination();
-            $isEditMode = false;
         }
 
         $form = $this->createForm(DestinationType::class, $destination);
@@ -98,7 +97,7 @@ class DestinationController extends AbstractController
 
         return $this->render('destination/create.html.twig', [
             'form' => $form->createView(),
-            'isEditMode' => $isEditMode
+            'destination' => $destination
         ]);
     }
 }
