@@ -19,6 +19,20 @@ class DestinationRepository extends ServiceEntityRepository
         parent::__construct($registry, Destination::class);
     }
 
+    public function findByNameAndDescription(string $value)
+    {
+
+        return $this->createQueryBuilder('d')
+                    ->orWhere('d.name LIKE :val')
+                    ->orWhere('d.description LIKE :val')
+                    ->orWhere('d.country LIKE :val')
+                    ->setParameter('val', '%'.$value.'%')
+                    ->orderBy('d.name', 'ASC')
+                    ->getQuery()
+                    ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Destination[] Returns an array of Destination objects
     //  */

@@ -2,9 +2,9 @@
 
     <div class="row">
         <div class="col-12">
-            <form action="">
+            <form method="post" action="{{ path('destination_index') }}">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Rechercher une destination...">
+                    <input type="text" name="destination_search" class="form-control" placeholder="Rechercher une destination...">
                 </div>
                 <button class="btn btn-success pull-right">Chercher</button>
             </form>

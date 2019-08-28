@@ -20,10 +20,25 @@ class DestinationController extends AbstractController
     /**
      * @Route("/", name="destination_index")
      */
-    public function index(DestinationRepository $destinationRepository)
+    public function index(DestinationRepository $destinationRepository, Request $request)
     {
+
+        $results = null;
+
+        $destinationSearch = $request->request->get('destination_search');
+
+        if ( $destinationSearch ) {
+
+            $results = $destinationRepository->findByNameAndDescription( $destinationSearch );
+
+        }
+        else {
+
+            $results = $destinationRepository->findAll();
+        }
+
         return $this->render('destination/index.html.twig', [
-            'destinations' => $destinationRepository->findAll()
+            'destinations' => $results
         ]);
     }
 
