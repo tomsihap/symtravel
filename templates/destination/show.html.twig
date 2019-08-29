@@ -8,6 +8,8 @@
 
     <hr>
 
+    {% if destination.reviews.count > 0 %}
+
     <ul>
         {% for review in destination.reviews %}
             <li>
@@ -23,4 +25,37 @@
             </li>
         {% endfor %}
     </ul>
+    {% else %}
+
+        <em>Aucune review déposée pour le moment.</em>
+
+    {% endif %}
+
+
+    <hr>
+
+    <button id="addReviewButton" class="btn btn-success">Ajouter une review</button>
+
+    {{ form_start(reviewForm, {'attr': {'id': 'addReviewForm', 'style': 'display:none'}} ) }}
+    {{ form_widget(reviewForm) }}
+
+
+    {% if review.user %}
+        <button class="btn btn-warning pull-right">Éditer le commentaire</button>
+    {% else %}
+        <button class="btn btn-success pull-right">Publier le commentaire</button>
+    {% endif %}
+
+    {{ form_end(reviewForm) }}
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function() {
+            $('#addReviewButton').on('click', function() {
+                $('#addReviewForm').slideToggle();
+            });
+        });
+    </script>
 {% endblock %}

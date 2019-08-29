@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Destination;
+use App\Entity\Review;
 use App\Form\DestinationType;
+use App\Form\ReviewType;
 use App\Repository\DestinationRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,21 +44,6 @@ class DestinationController extends AbstractController
             'destinations' => $results
         ]);
     }
-
-    /**
-     * @Route("/{id}", name="destination_show", methods={"GET"})
-     */
-    public function show(Destination $destination)
-    {
-
-        return $this->render('destination/show.html.twig', [
-            'destination' => $destination
-        ]);
-
-    }
-
-
-
 
     /**
      * @Route("/new", name="destination_create")
@@ -115,4 +102,51 @@ class DestinationController extends AbstractController
             'destination' => $destination
         ]);
     }
+
+
+    /**
+     * @Route("/{id}", name="destination_show", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     */
+    public function show(Destination $destination, Request $request)
+    {
+
+        $userId = $this->getUser()->getId();
+
+        $review = $destination->getReviews()->filter(
+            function($review) use( $userId ) {
+                return ( $review->getUser()->getId() === $userId );
+            }
+        )->first();
+
+        if (!$review) {
+            $review = new Review();
+        }
+
+        $reviewForm = $this->createForm(ReviewType::class, $review);
+
+        $reviewForm->handleRequest($request);
+
+        if ($reviewForm->isSubmitted() && $reviewForm->isValid())
+        {
+
+            $review->setUser($this->getUser());
+            $review->setDestination($destination);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($review);
+            $em->flush();
+
+            return $this->redirectToRoute('destination_show', ['id' => $destination->getId()]);
+
+        }
+
+        return $this->render('destination/show.html.twig', [
+            'destination'   => $destination,
+            'reviewForm'    => $reviewForm->createView(),
+            'review'        => $review
+        ]);
+
+    }
+
+
 }
