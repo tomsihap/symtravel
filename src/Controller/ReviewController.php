@@ -13,9 +13,9 @@ class ReviewController extends AbstractController
 {
 
     /**
-     * @Route("/destinations/{destination}/user/{user}", name="review_visited")
+     * @Route("/user/{user}/destination/{destination}", name="review_visited")
      */
-    public function hasVisited(ReviewRepository $reviewRepository, Destination $destination, User $user)
+    public function hasVisited(ReviewRepository $reviewRepository, ?Destination $destination, ?User $user)
     {
 
         if ( $this->getUser() === $user )
@@ -36,6 +36,38 @@ class ReviewController extends AbstractController
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($review);
+                $em->flush();
+
+            }
+        }
+
+        return $this->redirectToRoute('destination_index');
+
+    }
+
+    /**
+     * @Route("/user/{user}/destination/{destination}/unvisit", name="review_unvisited")
+     * @param ReviewRepository $reviewRepository
+     * @param Destination|null $destination
+     * @param User|null $user
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function unVisited(ReviewRepository $reviewRepository, ?Destination $destination, ?User $user)
+    {
+
+        if ( $this->getUser() === $user )
+        {
+
+            $reviewUserDestination = $reviewRepository->findOneBy([
+                "user" => $user,
+                "destination" => $destination,
+            ]);
+
+            if ($reviewUserDestination)
+            {
+
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($reviewUserDestination);
                 $em->flush();
 
             }

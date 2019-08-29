@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <h1>{{ destination.name }}</h1>
+    <h2>{{ destination.country }}</h2>
+
+    <hr>
+
+    <ul>
+        {% for review in destination.reviews %}
+            <li>
+                Visité par {{ review.user.username }}<br>
+
+                {% if review.content %}
+                    Commentaire laissé : {{ review.content }}
+                {% else %}
+                    <em>Aucun commentaire laissé pour le moment.</em>
+                {% endif %}
+
+
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

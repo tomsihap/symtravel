@@ -44,6 +44,21 @@ class DestinationController extends AbstractController
     }
 
     /**
+     * @Route("/{id}", name="destination_show", methods={"GET"})
+     */
+    public function show(Destination $destination)
+    {
+
+        return $this->render('destination/show.html.twig', [
+            'destination' => $destination
+        ]);
+
+    }
+
+
+
+
+    /**
      * @Route("/new", name="destination_create")
      * @Route("/{id}/edit", name="destination_edit")
      * @IsGranted("ROLE_USER")

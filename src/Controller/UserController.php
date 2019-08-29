@@ -11,12 +11,14 @@ class UserController extends AbstractController
     /**
      * @Route("/user/{id}", name="user_show")
      */
-    public function show(User $user)
+    public function show(?User $user)
     {
         if ($this->getUser() === $user) {
+
             return $this->render('user/show.html.twig', [
                 'user' => $user
             ]);
+
         }
 
         return $this->redirectToRoute('app_home');

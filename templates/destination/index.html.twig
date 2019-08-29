@@ -8,7 +8,13 @@
         {% for destination in destinations %}
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="card mt-3">
-                        <div class="card-header"># {{ destination.id }} : {{ destination.name }} ({{ destination.country }}) -  <span class="badge badge-primary">{{ destination.type.name }}</span></div>
+                        <div class="card-header">
+                            <a href="{{ path("destination_show", { id : destination.id }) }}">
+                                # {{ destination.id }} : {{ destination.name }} ({{ destination.country }})
+                            </a>
+                            -  <span class="badge badge-primary">{{ destination.type.name }}</span>
+
+                        </div>
                         <img src="{{ asset('uploads/destinations/' ~ destination.photo) }}" height="100" class="card-img-top" alt="...">
 
                         <div class="card-body">
@@ -20,7 +26,21 @@
                                 <a class="btn btn-sm btn-warning" href="{{ path('destination_edit', {id: destination.id}) }}">Éditer</a>
                                 <button class="btn btn-sm btn-danger">Supprimer</button>
 
-                                <a class="btn btn-primary" href="{{ path("review_visited", { destination: destination.id, user: app.user.id }) }}">J'ai visité</a>
+                                {% set userHasVisited = false %}
+
+                                {% for review in destination.reviews if review.user.id == app.user.id %}
+
+                                        {% set userHasVisited = true %}
+
+                                {% endfor %}
+
+                                {% if userHasVisited %}
+                                    <a class="btn btn-secondary" href="{{ path("review_unvisited", { destination: destination.id, user: app.user.id }) }}">Retirer la visite</a>
+                                {% else %}
+                                    <a class="btn btn-primary" href="{{ path("review_visited", { destination: destination.id, user: app.user.id }) }}">Ajouter une visite</a>
+                                {% endif %}
+
+
                             {% endif %}
                         </div>
                     </div>
