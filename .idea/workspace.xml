@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76d6a7dc-0fa3-444e-a6cd-fa87fde79ea0" name="Default Changelist" comment="Form validations">
-      <change afterPath="$PROJECT_DIR$/src/Form/ReviewType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DestinationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DestinationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/destination/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/destination/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ReviewType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ReviewType.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -206,7 +204,7 @@
       <workItem from="1566812794439" duration="9949000" />
       <workItem from="1566891837922" duration="59000" />
       <workItem from="1566891945888" duration="24693000" />
-      <workItem from="1567002392770" duration="12338000" />
+      <workItem from="1567002392770" duration="13733000" />
     </task>
     <task id="LOCAL-00001" summary="Creating type form, view and controller">
       <created>1566891710417</created>
